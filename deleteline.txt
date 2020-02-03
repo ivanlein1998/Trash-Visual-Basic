@@ -1,0 +1,13 @@
+Sub Edit()
+    Application.ScreenUpdating = False
+    Selection.HomeKey Unit:=wdStory
+    With Selection.Find
+        .ClearFormatting
+        .Wrap = wdFindStop
+        .Text = ";"
+        Do While .Execute
+            ActiveDocument.Bookmarks("\Line").Range.Delete
+        Loop
+    End With
+    Application.ScreenUpdating = True
+End Sub
