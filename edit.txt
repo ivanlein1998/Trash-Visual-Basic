@@ -1,0 +1,13 @@
+Sub Edit()
+    Dim i As Integer
+    Dim counter As Integer
+    counter = 1
+    Dim newValue As String
+    Dim newString As String
+    For i = 1 To 2375
+        newValue = Format(counter, "00000")
+        newString = "[T" & newValue & "]"
+        If Left(Cells(i, 1).Value, 3) = "[T0" Then Cells(i, 1).Value = newString
+        If Left(Cells(i, 1).Value, 3) = "[T0" Then counter = counter + 1
+    Next i
+End Sub
