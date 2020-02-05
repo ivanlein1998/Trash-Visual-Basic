@@ -4,7 +4,7 @@ Sub Edit()
     counter = 1
     Dim newValue As String
     Dim newString As String
-    For i = 1 To 2375
+    For i = 1 To "Target Role"
         newValue = Format(counter, "00000")
         newString = "[T" & newValue & "]"
         If Left(Cells(i, 1).Value, 3) = "[T0" Then Cells(i, 1).Value = newString
