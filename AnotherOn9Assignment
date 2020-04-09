@@ -1,0 +1,18 @@
+Sub Edit()
+    Dim wksSource As Worksheet
+    Set wksSource = ActiveWorkbook.Sheets("server_dns")
+    Dim i As Integer
+    Dim newCell As Range
+    Set newCell = wksSource.Range("E5")
+    Dim myCell As Range
+    Dim var As Variant
+    For i = 6 To 20477
+        Set myCell = wksSource.Range("E" & i)
+        If IsEmpty(myCell.Value) & Cells(2,i).value != "Order" Then
+            var = newCell.Value
+            wksSource.Cells(i, 1).Value = var
+        Else
+            Set newCell = wksSource.Range("E" & i)
+        End If
+    Next i
+End Sub
