@@ -8,7 +8,7 @@ Sub Edit()
     Dim var As Variant
     For i = 6 To 20477
         Set myCell = wksSource.Range("E" & i)
-        If IsEmpty(myCell.Value) & Cells(2,i).value != "Order" Then
+        If IsEmpty(myCell.Value) And Cells(2,i).value <> "Order" Then
             var = newCell.Value
             wksSource.Cells(i, 1).Value = var
         Else
