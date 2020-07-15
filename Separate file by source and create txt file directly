@@ -8,9 +8,11 @@ Sub main()
         source(counter) = Right(Cells(index, 1).Value, 8)
         counter = counter + 1
     Next
-    For index = 18 To 6401
-    var = Cells(index, 1).Value & "," & Cells(index, 2).Value & "," & Cells(index, 3).Value & Cells(index, 4).Value & Cells(index, 5).Value & "," & Cells(index, 6).Value & "," & Cells(index, 7).Value & "," & Cells(index, 8).Value & "," & Cells(index, 9).Value & "," & Cells(index, 10).Value & "," & Cells(index, 11).Value & "," & Cells(index, 12).Value & "," & Cells(index, 13).Value
-    Cells(index, 14).Value = var
+    For index = 18 To 10000
+        If IsEmpty(Cells(index, 1)) = False Then
+            var = Cells(index, 1).Value & "," & Cells(index, 2).Value & "," & Cells(index, 3).Value & Cells(index, 4).Value & Cells(index, 5).Value & "," & Cells(index, 6).Value & "," & Cells(index, 7).Value & "," & Cells(index, 8).Value & "," & Cells(index, 9).Value & "," & Cells(index, 10).Value & "," & Cells(index, 11).Value & "," & Cells(index, 12).Value & "," & Cells(index, 13).Value
+            Cells(index, 14).Value = var
+        End If
     Next
     Dim counter2 As Integer
     Dim target As String
@@ -34,7 +36,7 @@ Sub main()
         Dim fso As Object
         Set fso = CreateObject("Scripting.FileSystemObject")
         Dim Fileout As Object
-        Set Fileout = fso.CreateTextFile("C:\Users\lch249\Documents\data convert\AHN_" & target & ".txt", True, True)
+        Set Fileout = fso.CreateTextFile("C:\Users\lch249\Documents\data convert\HospitalName_" & target & ".txt", True, True)
         Fileout.Write content
         Fileout.Close
     Next
