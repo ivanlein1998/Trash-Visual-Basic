@@ -1,43 +1,43 @@
 Sub main()
-    Dim index As Integer
-    Dim var As Variant
-    Dim counter As Integer
-    counter = 0
-    Dim source(16) As String
-    For index = 1 To 16
-        source(counter) = Right(Cells(index, 1).Value, 8)
-        counter = counter + 1
-    Next
-    For index = 18 To 10000
-        If IsEmpty(Cells(index, 1)) = False Then
-            var = Cells(index, 1).Value & "," & Cells(index, 2).Value & "," & Cells(index, 3).Value & Cells(index, 4).Value & Cells(index, 5).Value & "," & Cells(index, 6).Value & "," & Cells(index, 7).Value & "," & Cells(index, 8).Value & "," & Cells(index, 9).Value & "," & Cells(index, 10).Value & "," & Cells(index, 11).Value & "," & Cells(index, 12).Value & "," & Cells(index, 13).Value
-            Cells(index, 14).Value = var
-        End If
-    Next
-    Dim counter2 As Integer
-    Dim target As String
-    Dim content As String
-    For counter2 = 0 To 15
-        content = ""
-        counter = 1
-        target = source(counter2)
-        For index = 18 To 6401
-            If Cells(index, 1).Value = target Then
-                If counter = 1 Then
-                    content = content & Cells(index, 14).Value
-                    counter = counter + 1
-                Else
-                    content = content & vbNewLine & Cells(index, 14).Value
-                    counter = counter + 1
-                End If
+        Dim index As Integer
+        Dim var As Variant
+        Dim counter As Integer
+        counter = 0
+        Dim source(16) As String
+        For index = 1 To 16
+            source(counter) = Right(Cells(index, 1).Value, 8)
+            counter = counter + 1
+        Next
+        For index = 18 To 10000
+            If IsEmpty(Cells(index, 1)) = False Then
+                var = Cells(index, 1).Value & "," & Cells(index, 2).Value & "," & Cells(index, 3).Value & Cells(index, 4).Value & Cells(index, 5).Value & "," & Cells(index, 6).Value & "," & Cells(index, 7).Value & "," & Cells(index, 8).Value & "," & Cells(index, 9).Value & "," & Cells(index, 10).Value & "," & Cells(index, 11).Value & "," & Cells(index, 12).Value & "," & Cells(index, 13).Value
+                Cells(index, 14).Value = var
             End If
         Next
-        counter = 0
-        Dim fso As Object
-        Set fso = CreateObject("Scripting.FileSystemObject")
-        Dim Fileout As Object
-        Set Fileout = fso.CreateTextFile("C:\Users\lch249\Documents\data convert\HospitalName_" & target & ".txt", True, True)
-        Fileout.Write content
-        Fileout.Close
-    Next
-End Sub
+        Dim counter2 As Integer
+        Dim target As String
+        Dim content As String
+        For counter2 = 0 To 15
+            content = ""
+            counter = 1
+            target = source(counter2)
+            For index = 18 To 6401
+                If Cells(index, 1).Value = target Then
+                    If counter = 1 Then
+                        content = content & Cells(index, 14).Value
+                        counter = counter + 1
+                    Else
+                        content = content & vbNewLine & Cells(index, 14).Value
+                        counter = counter + 1
+                    End If
+                End If
+            Next
+            counter = 0
+            Dim fso As Object
+            Set fso = CreateObject("Scripting.FileSystemObject")
+            Dim Fileout As Object
+            Set Fileout = fso.CreateTextFile("C:\Users\lch249\Documents\data convert\HospitalName_" & target & ".txt", True, True)
+            Fileout.Write content
+            Fileout.Close
+        Next
+    End Sub
