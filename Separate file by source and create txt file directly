@@ -2,31 +2,33 @@ Sub main()
     Dim index As Integer
     Dim var As Variant
     Dim sourcecounter As Integer
-    sourcecounter = 1
+    sourcecounter = 0
     Dim counter As Integer
     counter = 0
-    Dim source(16) As String
-    Do While IsEmpty(Cells(sourcecounter, 2)) = True
+    Do While IsEmpty(Cells(sourcecounter + 1, 2)) = True
         sourcecounter = sourcecounter + 1
     Loop
+    Dim startlocation As Integer
+    startlocation = sourcecounter + 2
+    Dim source(100) As String
     For index = 1 To sourcecounter
         source(counter) = Right(Cells(index, 1).Value, 8)
         counter = counter + 1
     Next
-    For index = sourcecounter + 2 To 10000
+    For index = startlocation To 10000
         If IsEmpty(Cells(index, 1)) = False Then
-            var = Cells(index, 1).Value & "," & Cells(index, 2).Value & "," & Cells(index, 3).Value & Cells(index, 4).Value & Cells(index, 5).Value & "," & Cells(index, 6).Value & "," & Cells(index, 7).Value & "," & Cells(index, 8).Value & "," & Cells(index, 9).Value & "," & Cells(index, 10).Value & "," & Cells(index, 11).Value & "," & Cells(index, 12).Value & "," & Cells(index, 13).Value
+            var = Cells(index, 1).Value & "," & Cells(index, 2).Value & "," & Cells(index, 3).Value & "," & Cells(index, 4).Value & "," & Cells(index, 5).Value & "," & Cells(index, 6).Value & "," & Cells(index, 7).Value & "," & Cells(index, 8).Value & "," & Cells(index, 9).Value & "," & Cells(index, 10).Value & "," & Cells(index, 11).Value & "," & Cells(index, 12).Value & "," & Cells(index, 13).Value
             Cells(index, 14).Value = var
         End If
     Next
     Dim counter2 As Integer
     Dim target As String
     Dim content As String
-    For counter2 = 0 To 15
+    For counter2 = 0 To sourcecounter - 1
         content = ""
-        counter = 1
+        counter = 0
         target = source(counter2)
-        For index = sourcecounter + 2 To 10000
+        For index = startlocation To 10000
             If Cells(index, 1).Value = target Then
                 If counter = 1 Then
                     content = content & Cells(index, 14).Value
@@ -37,11 +39,11 @@ Sub main()
                 End If
             End If
         Next
-        counter = 0
+        counter = 1
         Dim fso As Object
         Set fso = CreateObject("Scripting.FileSystemObject")
         Dim Fileout As Object
-        Set Fileout = fso.CreateTextFile("C:\Users\lch249\Documents\data convert\AHN_" & target & ".txt", True, True)
+        Set Fileout = fso.CreateTextFile("C:\Users\lch249\Documents\data convert\BH_" & target & ".txt", True, True)
         Fileout.Write content
         Fileout.Close
     Next
