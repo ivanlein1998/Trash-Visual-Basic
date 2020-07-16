@@ -1,5 +1,7 @@
 Sub main()
     Dim index As Integer
+    Dim hospitalName As String
+    hospitalName = Cells(100, 2).Value
     Dim var As Variant
     Dim sourcecounter As Integer
     sourcecounter = 0
@@ -43,7 +45,7 @@ Sub main()
         Dim fso As Object
         Set fso = CreateObject("Scripting.FileSystemObject")
         Dim Fileout As Object
-        Set Fileout = fso.CreateTextFile("C:\Users\lch249\Documents\data convert\HospitalName_" & target & ".txt", True, True)
+        Set Fileout = fso.CreateTextFile("C:\Users\lch249\Documents\data convert\" & hospitalName & "_" & target & ".txt", True, True)
         Fileout.Write content
         Fileout.Close
     Next
