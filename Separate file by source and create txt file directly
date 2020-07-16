@@ -26,7 +26,7 @@ Sub main()
     Dim content As String
     For counter2 = 0 To sourcecounter - 1
         content = ""
-        counter = 0
+        counter = 1
         target = source(counter2)
         For index = startlocation To 10000
             If Cells(index, 1).Value = target Then
@@ -39,11 +39,11 @@ Sub main()
                 End If
             End If
         Next
-        counter = 1
+        counter = 0
         Dim fso As Object
         Set fso = CreateObject("Scripting.FileSystemObject")
         Dim Fileout As Object
-        Set Fileout = fso.CreateTextFile("C:\Users\lch249\Documents\data convert\BH_" & target & ".txt", True, True)
+        Set Fileout = fso.CreateTextFile("C:\Users\lch249\Documents\data convert\HospitalName_" & target & ".txt", True, True)
         Fileout.Write content
         Fileout.Close
     Next
